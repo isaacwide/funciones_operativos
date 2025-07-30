@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<fcntl.h>
+#include<stdlib.h>
+#include<unistd.h>
+
+#define BYTES_BUFFER 512
+int main(){
+
+int arch;
+int i,leido;
+char buffer[BYTES_BUFFER];
+arch=open("hello.c",O_RDONLY);
+
+if(arch < 0){
+
+	printf("error al abrir el archivo ");
+	exit(-1);
+}
+
+while((leido=read(arch,buffer,BYTES_BUFFER))>0){
+	for(i=0;i<leido;i++)
+		putchar(buffer[i]);
+
+}
+close(arch);
+if(leido<0){
+printf("erro del archvo");
+exit(-2);
+
+}
+
+
+}
